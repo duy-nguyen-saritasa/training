@@ -1,0 +1,65 @@
+version: '2.1'
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.local
+      args:
+        hostUID: 1000
+        hostGID: 1000
+    image: training-backend-web
+    hostname: training-backend-web
+    container_name: training-backend-web
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    environment:
+      APP_ENV: local
+      PHP_IDE_CONFIG: serverName=training-backend.docker
+      COMPOSER_HOME: /home/www/.composer
+    labels:
+      SERVICE_NAME: training-backend-web
+      SERVICE_80_NAME: training-backend-web
+      SERVICE_443_NAME: training-backend-web
+    volumes:
+    - .:/home/www/app
+    - ~/.composer:/home/www/.composer
+
+  db:
+    image: mysql:5.7
+    hostname: training-backend-db
+    container_name: training-backend-db
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: training-backend
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
+    labels:
+      SERVICE_NAME: training-backend-db
+    healthcheck:
+      test: "/usr/bin/mysql --user=user --password=secret --execute \"SHOW DATABASES;\""
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:alpine
+    container_name: training-backend-redis
+    labels:
+      SERVICE_NAME: training-backend-redis
+
+  build-static:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.nodejs
+    image: training-backend-nodejs
+    hostname: training-backend-nodejs
+    container_name: training-backend-nodejs
+    mem_limit: 536870912
+#    user: node
+    volumes:
+    - ./:/home/www/app/
+    command: /bin/sh -c 'sh /static_build.sh'

@@ -1,22 +1,44 @@
-vendor/
-node_modules/
-npm-debug.log
+# Tools Specific files
+.idea/
+# Except db and debug connection servers
+!.idea/runConfigurations
+!.idea/php.xml
+!.idea/dataSources.xml
 
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+.phpstorm.meta.php
+_ide_helper.php
+.vscode/
+.project
+/nbproject/
+.install
+/.data
+*.orig
+.grunt
+.sass-cache
+.vagrant/
+*.log
 
-# Laravel 5 & Lumen specific
-public/storage
-public/hot
-storage/*.key
-.env.*.php
-.env.php
+# Packaged Dependencies
+/node_modules/
+/bower_components/
+/packages/
+/vendor/
+
+# Laravel files
 .env
+.env.*.php
+/public/assets/
+/public/storage/
+/public/hot/
+/public/images/
+/public/robots.txt
+/public/mix-manifest.json
+/resources/assets/html/
 Homestead.yaml
 Homestead.json
 
+/storage/
+storage/*.key
+
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
-
-.idea/
