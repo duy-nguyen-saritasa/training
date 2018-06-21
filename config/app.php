@@ -166,6 +166,7 @@ return [
         /*
          * Vendors Service Providers...
          */
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
 //        Saritasa\Transformers\TransformersServiceProvider::class,
 
