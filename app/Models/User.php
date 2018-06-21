@@ -1,76 +1,85 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ * Date: Thu, 21 Jun 2018 07:33:32 +0000.
+ */
+
 namespace App\Models;
 
-use Illuminate\Database\Query\Builder;
-use Illuminate\Notifications\Notifiable;
-use Saritasa\Database\Eloquent\Models\User as BaseUserModel;
-use Saritasa\Enums\Gender;
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Application User
+ * Class User
  *
  * @property int $id
  * @property string $first_name
  * @property string $last_name
  * @property string $email
  * @property string $password
+ * @property string $gender
  * @property string $facebook_id
  * @property string $instagram_id
- * @property Gender $gender
  * @property string $avatar_url
- * @property string $remember_token
+ * @property int $role_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static Builder|User whereId($value)
- * @method static Builder|User whereFirstName($value)
- * @method static Builder|User whereLastName($value)
- * @method static Builder|User whereEmail($value)
- * @method static Builder|User wherePassword($value)
- * @method static Builder|User whereFacebookId($value)
- * @method static Builder|User whereInstagramId($value)
- * @method static Builder|User whereAvatarUrl($value)
- * @method static Builder|User whereGender($value)
- * @method static Builder|User whereRememberToken($value)
- * @method static Builder|User whereCreatedAt($value)
- * @method static Builder|User whereUpdatedAt($value)
- * @method static Builder|User whereDeletedAt($value)
- * @mixin \Eloquent
+ *
+ * @property \App\Models\Role $role
+ * @property \Illuminate\Database\Eloquent\Collection $notification_settings
+ * @property \Illuminate\Database\Eloquent\Collection $notifications
+ * @property \App\Models\Preference $preference
+ * @property \Illuminate\Database\Eloquent\Collection $user_devices
+ *
+ * @package App\Models
  */
-class User extends Authenticatable implements JWTSubject
+class User extends Eloquent
 {
-    use Notifiable;
+    use \Illuminate\Database\Eloquent\SoftDeletes;
 
-    const DEFAULT_AVATAR = 'images/avatar/default.png';
-
-    protected $enums = [
-        'gender' => Gender::class,
+    protected $casts = [
+        'role_id' => 'int'
     ];
 
-    protected $defaults = [
-        'avatar_url' => self::DEFAULT_AVATAR
+    protected $hidden = [
+        'password'
     ];
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+        'gender',
+        'facebook_id',
+        'instagram_id',
+        'avatar_url',
+        'role_id'
+    ];
+
+    public function role()
     {
-        return $this->getKey();
+        return $this->belongsTo(\App\Models\Role::class);
     }
 
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
+    public function notificationSettings()
     {
-        return [];
+        return $this->hasMany(\App\Models\NotificationSetting::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(\App\Models\Notification::class);
+    }
+
+    public function preference()
+    {
+        return $this->hasOne(\App\Models\Preference::class, 'id');
+    }
+
+    public function userDmakeevices()
+    {
+        return $this->hasMany(\App\Models\UserDevice::class);
     }
 }
