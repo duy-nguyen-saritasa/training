@@ -10,16 +10,10 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MarkupController;
 use Saritasa\Laravel\Controllers\Web\WebResourceRegistrar;
 
 $router = app('router');
 $web = new WebResourceRegistrar($router);
 
-$web->get('/', HomeController::class, 'index');
-$web->resource('markup', MarkupController::class, [
-    'only' => 'index',
-    'get' => MarkupController::getMarkupMethods()
-]);
+$router->any('/{all?}', 'HomeController@index');

@@ -25,11 +25,8 @@ module.exports = {
       "webpack": {
         "config": {
           "resolve": {
-            "modules": [resourcesDir + 'vues', resourcesDir + 'js', "node_modules"],
-            "alias": {
-              "js" : resourcesDir + '/js/',
-              "vues" : resourcesDir + '/vues/'
-            }
+            extensions: ['.js', '.vue', '.json', '.scss'],
+            modules: [resourcesDir, "node_modules"],
           },
           module: {
             rules: [
@@ -59,6 +56,14 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', {
       'optionalDependencies': ['test/unit/index.js']
     }],
+    'no-plusplus': 'off',
+    'no-shadow': 'off',
+    'no-restricted-globals': 'off',
+    'func-names': 'off',
+    'linebreak-style': ['off'],
+    'no-implicit-coercion': 'error',
+    'import/no-named-as-default': 'off',
+    'import/newline-after-import': 'error',
 
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
