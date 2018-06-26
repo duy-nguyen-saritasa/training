@@ -67,3 +67,17 @@ svg:not(:root) {
 .hidden {
   display: none !important;
 }
+
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+footer{
+  margin-top: 20px;
+}

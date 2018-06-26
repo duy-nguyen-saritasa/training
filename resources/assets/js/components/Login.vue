@@ -39,7 +39,6 @@
           error() {},
           rememberMe: true,
           redirect: '/',
-          fetchUser: true,
         });
       },
     },

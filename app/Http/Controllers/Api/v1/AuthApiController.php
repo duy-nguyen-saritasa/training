@@ -9,4 +9,8 @@ use Saritasa\Laravel\Controllers\Api\JWTAuthApiController;
  */
 class AuthApiController extends JWTAuthApiController
 {
+    public function user()
+    {
+        return response()->json(auth()->user());
+    }
 }

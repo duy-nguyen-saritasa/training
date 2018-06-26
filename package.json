@@ -16,9 +16,6 @@
   "dependencies": {
     "@websanova/vue-auth": "^2.21.13-beta",
     "axios": "^0.17.1",
-    "dotenv": "^6.0.0",
-    "file-system": "^2.2.2",
-    "fs": "0.0.1-security",
     "imports": "^1.0.0",
     "jquery": "^3.2",
     "lodash": "^4.17.4",

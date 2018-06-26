@@ -5,8 +5,6 @@ import VueAxios from 'vue-axios';
 import App from './App';
 import createRouter from './router';
 
-require('dotenv').config();
-
 const router = createRouter();
 
 Vue.use(VueAxios, axios);

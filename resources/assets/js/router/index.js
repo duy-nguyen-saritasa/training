@@ -2,8 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Home from '../components/Home';
-import Hello from '../components/Hello';
-import Login from '../components/Login';
+import About from '../components/About';
 import Register from '../components/Register';
 
 Vue.use(Router);
@@ -21,20 +20,10 @@ const createRouter = function () {
         },
       },
       {
-        path: '/hello',
-        name: 'hello',
+        path: '/about',
+        name: 'about',
         components: {
-          default: Hello,
-        },
-        meta: {
-          auth: true,
-        },
-      },
-      {
-        path: '/login',
-        name: 'login',
-        components: {
-          default: Login,
+          default: About,
         },
         meta: {
           auth: false,
@@ -45,6 +34,34 @@ const createRouter = function () {
         name: 'register',
         components: {
           default: Register,
+        },
+        meta: {
+          auth: false,
+        },
+      },
+      {
+        path: '/404',
+        name: 'error-404',
+        components: {
+          default: About,
+        },
+        meta: {
+          auth: false,
+        },
+      }, {
+        path: '/403',
+        name: 'error-403',
+        components: {
+          default: About,
+        },
+        meta: {
+          auth: false,
+        },
+      }, {
+        path: '/502',
+        name: 'error-502',
+        components: {
+          default: About,
         },
         meta: {
           auth: false,

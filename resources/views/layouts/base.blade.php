@@ -5,18 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="<?= csrf_token() ?>">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <title>@yield('title', config('app.name'))</title>
 </head>
 
 <body>
-
-
 <!-- Begin page content -->
-<div class="container">
-    @yield('content.base')
-</div>
-
+@yield('content.base')
 
 @include('layouts.partials.footer')
 
@@ -26,7 +21,7 @@
 <script src="{{ mix('/assets/js/app.js') }}"></script>
 
 @if (config('app.env') == 'local' && !request()->isSecure())
-<script src="http://localhost:35729/livereload.js"></script>
+    <script src="http://localhost:35729/livereload.js"></script>
 @endif
 
 @yield('additional.js')

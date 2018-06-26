@@ -15,7 +15,7 @@ use Dingo\Api\Routing\Router;
 
 /* @var Router $api */
 $api = app(Router::class);
-$api->version(config('api.version'), ['namespace' => 'App\Http\Controllers\Api\v1'], function(Router $api) {
+$api->version(config('api.version'), ['namespace' => 'App\Http\Controllers\Api\v1'], function (Router $api) {
 
     $api->post('auth/login', 'AuthApiController@login');
     $api->put('auth', 'AuthApiController@refreshToken');
@@ -23,5 +23,9 @@ $api->version(config('api.version'), ['namespace' => 'App\Http\Controllers\Api\v
 
     $api->post('auth/password/reset', 'ForgotPasswordApiController@sendResetLinkEmail');
     $api->put('auth/password/reset', 'ResetPasswordApiController@reset');
+
+    $api->group(['middleware' => ['jwt.auth', 'bindings']], function (Router $api) {
+        $api->get('auth/user', 'AuthApiController@user');
+    });
 
 });

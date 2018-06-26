@@ -1,3 +1,3 @@
-<footer class="footer">
-    <span class="text-muted">Place sticky footer content here.</span>
-</footer>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
