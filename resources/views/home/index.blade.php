@@ -1,11 +1,9 @@
 @extends('layouts.frontend')
 
 @section('title')
-    {{ config('app.title', 'Example') }}
+    {{ config('app.title', 'Manage User') }}
 @endsection
 
 @section('content')
-    <div>
-        Hello World
-    </div>
+    <div id="app"></div>
 @endsection

@@ -1,18 +1,9 @@
 <template>
     <div>
-        <v-content>
-            <v-container :class="">
-                <v-layout justify-space-between>
-                    Layout
-                </v-layout>
-            </v-container>
-
-        </v-content>
+        <p>This is Home</p>
     </div>
 </template>
 
 <script>
-  export default {
-    name: 'Dashboard',
-  };
+  export default {};
 </script>

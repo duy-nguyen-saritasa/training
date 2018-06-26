@@ -17,7 +17,7 @@ use Dingo\Api\Routing\Router;
 $api = app(Router::class);
 $api->version(config('api.version'), ['namespace' => 'App\Http\Controllers\Api\v1'], function(Router $api) {
 
-    $api->post('auth', 'AuthApiController@login');
+    $api->post('auth/login', 'AuthApiController@login');
     $api->put('auth', 'AuthApiController@refreshToken');
     $api->delete('auth', 'AuthApiController@logout')->middleware('api.auth');
 
