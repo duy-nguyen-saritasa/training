@@ -1,16 +1,18 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 
 import Home from '../components/Home';
 import About from '../components/About';
+import Login from '../components/Login';
 import Register from '../components/Register';
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
 const createRouter = function () {
-  return new Router({
+  return new VueRouter({
     mode: 'history',
-    fallback: false,
+    hashbang: false,
+    linkActiveClass: 'active',
     routes: [
       {
         path: '/',
@@ -26,7 +28,7 @@ const createRouter = function () {
           default: About,
         },
         meta: {
-          auth: false,
+          auth: true,
         },
       },
       {
@@ -40,28 +42,10 @@ const createRouter = function () {
         },
       },
       {
-        path: '/404',
-        name: 'error-404',
+        path: '/login',
+        name: 'login',
         components: {
-          default: About,
-        },
-        meta: {
-          auth: false,
-        },
-      }, {
-        path: '/403',
-        name: 'error-403',
-        components: {
-          default: About,
-        },
-        meta: {
-          auth: false,
-        },
-      }, {
-        path: '/502',
-        name: 'error-502',
-        components: {
-          default: About,
+          default: Login,
         },
         meta: {
           auth: false,

@@ -19,12 +19,12 @@
                             <router-link :to="{ name: 'about' }">About</router-link>
                         </a>
                     </li>
-                    <li class="nav-item" v-if="$auth.ready()">
+                    <li class="nav-item" v-if="!$auth.check()">
                         <a class="nav-link" data-toggle="modal" data-target="#loginModal">Login</a>
                     </li>
-                    <li class="nav-item" v-if="$auth.ready()">
+                    <li class="nav-item" v-if="$auth.check()">
                         <a class="nav-link" href="#">
-                            <router-link :to="{ name: 'logout' }">Logout</router-link>
+                            <a v-on:click="$auth.logout()">logout</a>
                         </a>
                     </li>
                 </ul>

@@ -18,7 +18,7 @@ $api = app(Router::class);
 $api->version(config('api.version'), ['namespace' => 'App\Http\Controllers\Api\v1'], function (Router $api) {
 
     $api->post('auth/login', 'AuthApiController@login');
-    $api->put('auth', 'AuthApiController@refreshToken');
+    $api->put('auth/refresh', 'AuthApiController@refreshToken');
     $api->delete('auth', 'AuthApiController@logout')->middleware('api.auth');
 
     $api->post('auth/password/reset', 'ForgotPasswordApiController@sendResetLinkEmail');

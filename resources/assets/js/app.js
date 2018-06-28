@@ -1,22 +1,25 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import VueAuth from '@websanova/vue-auth';
 
 import App from './App';
+import AuthDriver from './driver/Auth';
 import createRouter from './router';
 
-const router = createRouter();
-
 Vue.use(VueAxios, axios);
+
+Vue.router = createRouter();
 axios.defaults.baseURL = '/api';
 
-Vue.router = router;
-
 /* eslint-disable global-require */
-Vue.use(require('@websanova/vue-auth'), {
-  auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
+Vue.use(VueAuth, {
+  auth: AuthDriver,
   http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
   router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+  refreshData: {
+    url: 'auth/refresh', method: 'PUT', enabled: true, interval: 30,
+  },
 });
 /* eslint-enable global-require */
 
