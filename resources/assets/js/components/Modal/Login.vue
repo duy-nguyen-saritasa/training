@@ -78,10 +78,10 @@
           },
           rememberMe: false,
           redirect: '/',
-          fetchUser: false,
+          fetchUser: true,
         });
       },
-      setUser: () => {
+      getUser() {
 
       },
     },

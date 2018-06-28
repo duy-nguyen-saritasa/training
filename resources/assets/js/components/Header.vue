@@ -14,6 +14,11 @@
                             <router-link :to="{ name: 'home' }">Home</router-link>
                         </a>
                     </li>
+                    <li class="nav-item active" v-if="$auth.check()">
+                        <a class="nav-link" href="#">
+                            <router-link :to="{ name: 'user-list' }">User List</router-link>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <router-link :to="{ name: 'about' }">About</router-link>

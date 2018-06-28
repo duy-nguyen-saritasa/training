@@ -5,6 +5,7 @@ import Home from '../components/Home';
 import About from '../components/About';
 import Login from '../components/Login';
 import Register from '../components/Register';
+import UserList from '../components/User/List';
 
 Vue.use(VueRouter);
 
@@ -20,15 +21,25 @@ const createRouter = function () {
         components: {
           default: Home,
         },
+        meta: {
+          auth: true,
+        },
+      },
+      {
+        path: '/user',
+        name: 'user-list',
+        components: {
+          default: UserList,
+        },
+        meta: {
+          auth: true,
+        },
       },
       {
         path: '/about',
         name: 'about',
         components: {
           default: About,
-        },
-        meta: {
-          auth: true,
         },
       },
       {

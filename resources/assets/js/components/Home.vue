@@ -4,7 +4,7 @@
 
         <div class="row text-center text-lg-left" v-if="$auth.ready()">
             <ul class="list-group">
-                <li class="list-group-item">First name : <b>{{user.first_name}}</b></li>
+                <li class="list-group-item">First name : <b>{{$auth.user().first_name}}</b></li>
                 <li class="list-group-item">Last name : <b>{{user.last_name}}</b></li>
                 <li class="list-group-item">Email : <b>{{user.email}}</b></li>
             </ul>
@@ -20,12 +20,7 @@
     name: 'Home',
     data() {
       return {
-        user: {
-          id: 1,
-          first_name: 'Admin',
-          last_name: 'Saritasa',
-          email: 'admin@mail.com',
-        },
+        user: this.$auth.user(),
       };
     },
   };
