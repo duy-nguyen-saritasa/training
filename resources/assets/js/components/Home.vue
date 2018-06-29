@@ -4,9 +4,9 @@
 
         <div class="row text-center text-lg-left" v-if="$auth.ready()">
             <ul class="list-group">
-                <li class="list-group-item">First name : <b>{{$auth.user().first_name}}</b></li>
-                <li class="list-group-item">Last name : <b>{{$auth.user().last_name}}</b></li>
-                <li class="list-group-item">Email : <b>{{$auth.user().email}}</b></li>
+                <li class="list-group-item">First name : <b>{{user.first_name}}</b></li>
+                <li class="list-group-item">Last name : <b>{{user.last_name}}</b></li>
+                <li class="list-group-item">Email : <b>{{user.email}}</b></li>
             </ul>
         </div>
         <div class="row text-center text-lg-left" v-if="!$auth.ready()">
@@ -16,7 +16,26 @@
 </template>
 
 <script>
+  import userService from '../services/User';
+
   export default {
     name: 'Home',
+    data() {
+      return {
+        user: {},
+      };
+    },
+    mounted() {
+      this.loadUser();
+    },
+    methods: {
+      async loadUser() {
+        this.user = await userService.get().catch((e) => {
+          // eslint-disable-next-line
+          alert(e);
+          return {};
+        });
+      },
+    },
   };
 </script>

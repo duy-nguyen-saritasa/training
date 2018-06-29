@@ -26,6 +26,8 @@ $api->version(config('api.version'), ['namespace' => 'App\Http\Controllers\Api\v
 
     $api->group(['middleware' => ['jwt.auth', 'bindings']], function (Router $api) {
         $api->get('auth/user', 'AuthApiController@user');
+
+        $api->resource('users', 'UsersController');
     });
 
 });

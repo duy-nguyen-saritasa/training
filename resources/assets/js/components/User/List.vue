@@ -14,7 +14,7 @@
                             <th>Delete</th>
                         </tr>
                         <tr v-for="user in users">
-                            <td>{{user.no }}</td>
+                            <td>{{user.id }}</td>
                             <td>{{user.first_name}}</td>
                             <td>{{user.last_name}}</td>
                             <td>{{user.email}}</td>
@@ -40,13 +40,14 @@
         users: null,
       }
     },
-    created() {
+    mounted() {
       this.loadList();
     },
     methods: {
       async loadList() {
-        const user = await userService.loadList();
-        this.users = { user };
+        this.users = await userService.loadList().catch(function (e) {
+          alert(e);
+        });
       }
     }
   };
