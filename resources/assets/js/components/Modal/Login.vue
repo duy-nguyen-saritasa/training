@@ -49,6 +49,8 @@
 </template>
 
 <script>
+  import userService from '../../services/User';
+
   export default {
     data() {
       return {
@@ -68,9 +70,13 @@
             email: app.email,
             password: app.password,
           },
-          success() {
+          async success() {
             // Hide login-modal after login
             $('#loginModal').modal('hide');
+
+            // Get and set user to auth
+            const user = await userService.get();
+            app.$auth.user(user);
           },
           error() {
             // Set error status

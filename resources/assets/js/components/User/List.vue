@@ -32,7 +32,7 @@
 </template>
 
 <script type="javascript">
-import userService from '../../services/User';
+  import userService from '../../services/User';
 
   export default {
     data() {
@@ -40,8 +40,14 @@ import userService from '../../services/User';
         users: null,
       }
     },
-    beforeCreate(){
-      this.users = userService.loadList();
+    created() {
+      this.loadList();
+    },
+    methods: {
+      async loadList() {
+        const user = await userService.loadList();
+        this.users = { user };
+      }
     }
   };
 </script>
