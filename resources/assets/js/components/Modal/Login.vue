@@ -39,8 +39,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <router-link :to="{ name: 'register' }" data-dismiss="modal">Register</router-link>
-                    - <a href="#">Forgot Password</a>
+                    <a href="#">Forgot Password</a>
                 </div>
 
             </div>

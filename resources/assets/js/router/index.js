@@ -4,7 +4,6 @@ import VueRouter from 'vue-router';
 import Home from '../components/Home';
 import About from '../components/About';
 import Login from '../components/Login';
-import Register from '../components/Register';
 import UserList from '../components/User/List';
 
 Vue.use(VueRouter);
@@ -40,16 +39,6 @@ const createRouter = function () {
         name: 'about',
         components: {
           default: About,
-        },
-      },
-      {
-        path: '/register',
-        name: 'register',
-        components: {
-          default: Register,
-        },
-        meta: {
-          auth: false,
         },
       },
       {

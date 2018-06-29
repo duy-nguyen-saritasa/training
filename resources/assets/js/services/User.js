@@ -7,4 +7,7 @@ export default {
   loadList() {
     return userResource.list();
   },
+  create(user) {
+    return userResource.create(user);
+  },
 };

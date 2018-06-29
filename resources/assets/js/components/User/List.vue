@@ -1,6 +1,8 @@
 <template>
     <div class="container">
+        <RegisterModal/>
         <h1 class="my-4 text-center text-lg-left">User List</h1>
+        <a href="#" data-toggle="modal" data-target="#registerModal" class="btn btn--green">Add</a>
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -28,13 +30,18 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
 <script type="javascript">
   import userService from '../../services/User';
+  import RegisterModal from '../Modal/Register';
 
   export default {
+    components: {
+      RegisterModal,
+    },
     data() {
       return {
         users: null,
