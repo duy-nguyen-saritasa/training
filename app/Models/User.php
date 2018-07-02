@@ -60,6 +60,21 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
+     * Rules of users
+     *
+     * @return array
+     */
+    public function getValidationRules(): array
+    {
+        return [
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string',
+        ];
+    }
+
+    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed

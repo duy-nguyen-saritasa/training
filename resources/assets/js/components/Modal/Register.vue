@@ -13,14 +13,16 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <div id="msg-login-error" class="alert alert-danger" v-if="error">
-                            <strong>{{ error }}</strong>
+                        <div id="msg-login-error" class="alert alert-danger" v-if="errors">
+                            <ul>
+                                <li v-for="error in errors">{{ error.messages[0] }}</li>
+                            </ul>
                         </div>
 
                         <div class="form-group">
                             <label for="first_name"><b>First name</b></label>
                             <input type="text" placeholder="First name" name="first_name" v-model="body.user.first_name"
-                                   required>
+                                   >
                         </div>
 
                         <div class="form-group">
@@ -69,7 +71,7 @@
             first_name: '',
           },
         },
-        error: null,
+        errors: null,
       };
     },
     methods: {
@@ -81,7 +83,7 @@
           // Reload page
           app.$router.go(app.$router.currentRoute);
         }).catch((e) => {
-          app.error = e.message;
+          app.errors = e.response.data.errors;
         });
       },
     },

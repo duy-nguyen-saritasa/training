@@ -16,6 +16,8 @@
     "saritasa/dingo-api-custom": "^2.0",
     "saritasa/laravel-controllers": "^2.0",
     "saritasa/laravel-notifications-api": "^1.0",
+    "saritasa/laravel-repositories": "^2.1",
+    "saritasa/php-common": "^1.0",
     "saritasa/laravel-middleware": "^1.0",
     "saritasa/roles-simple": "^1.0",
     "tymon/jwt-auth": "1.0.*@dev"

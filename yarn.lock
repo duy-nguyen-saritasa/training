@@ -349,6 +349,10 @@ ast-types@0.9.6:
   version "0.9.6"
   resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.9.6.tgz#102c9e9e9005d3e7e3829bf0c4fa24ee862ee9b9"
 
+async--await@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/async--await/-/async--await-1.0.2.tgz#3f78ce85ef4fa420546afe3bcbcaf00a145d230c"
+
 async-each-series@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/async-each-series/-/async-each-series-1.1.0.tgz#f42fd8155d38f21a5b8ea07c28e063ed1700b138"
