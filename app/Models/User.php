@@ -8,7 +8,7 @@
 namespace App\Models;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Saritasa\Database\Eloquent\Models\User as BaseUserModel;
 
 /**
  * Class User
@@ -35,30 +35,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @package App\Models
  */
-class User extends Authenticatable implements JWTSubject
+class User extends BaseUserModel implements JWTSubject
 {
-    use \Illuminate\Database\Eloquent\SoftDeletes;
-
-    protected $casts = [
-        'role_id' => 'int'
-    ];
-
-    protected $hidden = [
-        'password'
-    ];
-
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'password',
-        'gender',
-        'facebook_id',
-        'instagram_id',
-        'avatar_url',
-        'role_id'
-    ];
-
     /**
      * Rules of users
      *

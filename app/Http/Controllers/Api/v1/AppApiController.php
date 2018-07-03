@@ -196,7 +196,7 @@ class AppApiController extends BaseApiController
      *
      * @throws ValidationException
      */
-    public function update(Request $request, Model $model): Response
+    public function updateEntity(Request $request, Model $model): Response
     {
         $this->serviceManager->update($model, $request->toArray());
         return $this->response->item($model, $this->transformer);

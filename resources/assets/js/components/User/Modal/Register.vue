@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label for="first_name"><b>First name</b></label>
                             <input type="text" placeholder="First name" name="first_name" v-model="body.user.first_name"
-                                   >
+                            >
                         </div>
 
                         <div class="form-group">
@@ -60,16 +60,13 @@
 </template>
 
 <script>
-  // import userListComponent from '../User/List';
-  import userService from '../../services/User';
+  import userService from '../../../services/User';
 
   export default {
     data() {
       return {
         body: {
-          user: {
-            first_name: '',
-          },
+          user: {},
         },
         errors: null,
       };
@@ -83,7 +80,7 @@
           // Reload page
           app.$router.go(app.$router.currentRoute);
         }).catch((e) => {
-          app.errors = e.response.data.errors;
+          app.errors = e.response.data.errors || e.response.data.message;
         });
       },
     },

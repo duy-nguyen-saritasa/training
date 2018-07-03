@@ -10,4 +10,7 @@ export default {
   create(user) {
     return userResource.create(user);
   },
+  update(user) {
+    return userResource.update(user);
+  },
 };
