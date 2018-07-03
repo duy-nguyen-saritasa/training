@@ -210,7 +210,7 @@ class AppApiController extends BaseApiController
      * @return Response
      * @throws RestfulServiceException
      */
-    public function destroy(Model $model): Response
+    public function destroyEntity(Model $model): Response
     {
         $this->serviceManager->delete($model);
         return $this->response->noContent();

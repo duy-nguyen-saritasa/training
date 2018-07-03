@@ -14,4 +14,8 @@ export default {
     const apiPath = 'users/';
     return axios.put(apiPath + user.id, user).then(res => res.data);
   },
+  delete(id) {
+    const apiPath = 'users/';
+    return axios.delete(apiPath + id).then(res => res.data);
+  },
 };

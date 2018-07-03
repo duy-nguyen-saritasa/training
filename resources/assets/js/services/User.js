@@ -13,4 +13,7 @@ export default {
   update(user) {
     return userResource.update(user);
   },
+  delete(id) {
+    return userResource.delete(id);
+  },
 };

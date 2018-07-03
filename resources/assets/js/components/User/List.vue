@@ -30,7 +30,12 @@
                                     <span class="glyphicon glyphicon-edit"></span> Edit
                                 </button>
                             </td>
-                            <td></td>
+                            <td>
+                                <button v-on:click="deleteUser(user.id)" type="button"
+                                        class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-edit"></span> Delete
+                                </button>
+                            </td>
                         </tr>
                         <tr v-if="!users">
                             <td colspan="6">Not found</td>
@@ -58,7 +63,7 @@
         users: null,
         user_update: {},
         message: null,
-    }
+      }
     },
     mounted() {
       this.loadList();
@@ -72,6 +77,16 @@
       updateUser(user) {
         this.$refs.userUpdateComp.setUser(user);
         $('#updateUserModal').modal('show');
+      },
+      deleteUser(id) {
+        const app = this;
+        if (confirm("Are you sure to delete this user ?")) {
+          userService.delete(id).then(() => {
+            app.showMessage('Deleted success');
+            this.loadList();
+          });
+        }
+
       },
       showMessage(message) {
         this.message = message;
