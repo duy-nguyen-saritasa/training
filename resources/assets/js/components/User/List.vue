@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <RegisterUserModal/>
-        <EditUserModal @success="showMessage" ref="userUpdateComp"></EditUserModal>
+        <RegisterUserModal @register="userRegistered" ref="userRegistComp" />
+        <EditUserModal @update="userUpdated" ref="userUpdateComp"></EditUserModal>
         <h1 class="my-4 text-center text-lg-left">User List</h1>
         <button data-toggle="modal" data-target="#registerModal" class="btn btn-success">Add</button>
         <div class="row">
@@ -25,7 +25,7 @@
                             <td>{{user.last_name}}</td>
                             <td>{{user.email}}</td>
                             <td>
-                                <button v-on:click="updateUser(user)" data-toggle="modal" type="button"
+                                <button v-on:click="updateUser(user)" type="button"
                                         class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-edit"></span> Edit
                                 </button>
@@ -61,7 +61,6 @@
     data() {
       return {
         users: null,
-        user_update: {},
         message: null,
       }
     },
@@ -75,22 +74,34 @@
         });
       },
       updateUser(user) {
-        this.$refs.userUpdateComp.setUser(user);
+        // Set init data for update from
+        this.$refs.userUpdateComp.processUpdate(user);
+        // Hide update modal
         $('#updateUserModal').modal('show');
+      },
+      userRegistered(message){
+        // Reload user list
+        this.loadList();
+        // Set success message
+        this.showMessage(message);
       },
       deleteUser(id) {
         const app = this;
-        if (confirm("Are you sure to delete this user ?")) {
+        if (confirm("Are you sure to delete user ID : " + id + " ?")) {
           userService.delete(id).then(() => {
             app.showMessage('Deleted success');
             this.loadList();
           });
         }
-
+      },
+      userUpdated(message) {
+        // Reload user list
+        this.loadList();
+        // Set success message
+        this.showMessage(message);
       },
       showMessage(message) {
         this.message = message;
-        this.loadList();
       }
     }
   };

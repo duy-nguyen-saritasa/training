@@ -40,12 +40,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password"><b>New Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="password"
-                                   v-model="userUpdate.password">
-                        </div>
-
-                        <div class="form-group">
                             <button type="submit">Update</button>
                         </div>
                     </div>
@@ -62,6 +56,7 @@
   import userService from '../../../services/User';
 
   export default {
+    props: ['updateUser'],
     data() {
       return {
         userUpdate: {},
@@ -70,15 +65,14 @@
       };
     },
     methods: {
-      setUser(user) {
-        // this.clearErrorMessage();
+      processUpdate(user) {
+        this.clearErrorMessage();
         // Set user params
+        this.userUpdate = {};
         this.userUpdate.id = user.id;
         this.userUpdate.first_name = user.first_name;
         this.userUpdate.last_name = user.last_name;
         this.userUpdate.email = user.email;
-        this.userUpdate.password = '';
-        $('#updateUserModal').modal('show');
       },
       edit() {
         const app = this;
@@ -86,8 +80,8 @@
         userService.update(this.userUpdate).then(() => {
           // Hide register modal
           $('#updateUserModal').modal('hide');
-          // Update success
-          app.$emit('success', 'Update success');
+          // Updated success
+          app.$emit('update', 'Update success');
         }).catch((e) => {
           // Set errors
           app.errors = e.response.data.errors || null;
