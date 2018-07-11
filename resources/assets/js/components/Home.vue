@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+    
+        <h1 class="my-4 text-center text-lg-left">This repository was moved to :</h1>
+        <a href="https://gitlab.saritasa.com/DuyNguyen/training">https://gitlab.saritasa.com/DuyNguyen/training</a>
+
         <h1 class="my-4 text-center text-lg-left">User info</h1>
 
         <div class="row text-center text-lg-left" v-if="$auth.ready()">
