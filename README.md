@@ -1,3 +1,7 @@
+# Moved to : https://gitlab.saritasa.com/DuyNguyen/training
+
+
+
 # training
 Init project with cookiecutter-laravel template
 
